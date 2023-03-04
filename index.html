@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Electron File List</title>
+	<link rel="stylesheet" href="./css/components-style.css"/>
+    <link rel="stylesheet" href="./css/pages.css"/>
+    <link rel="stylesheet" href="./css/pages-m.css"/>
+	<style type="text/css">
+		.highlight {
+			color:red;
+			font-weight: bold;
+		}
+		
+		ul {
+			counter-reset: my-counter;
+			width: 320px;
+			border: 0;
+		}
+		
+		ul > li:hover {
+			background-color: #f1f1f1;
+		}
+
+		ul > li {
+			counter-increment: my-counter;
+			list-style-type: none;
+			cursor:pointer;
+			padding-top: 5px;
+			border-bottom: 1px solid darkgray;
+		}
+		
+		ul > li:before {
+			content: counter(my-counter) ".";
+		}
+		
+		input {
+			width: 300px;
+		}
+		#notes-status {
+			font-weight: bold;
+			color: red;
+			font-size: 16px;
+		}
+		.hidden {
+			display:none;
+		}
+	</style>
+	
+	<script>
+		$(document).ready(function(){
+			$("#NewName").focus();
+		});
+	</script>
+  </head>
+  <body>
+	<div class="notification hidden">
+		<div class="notification-modal">
+		  <h2 class="modal-title"> 업데이트 안내 </h2>
+		  <h2 id="version"> </h2>
+		  <p class="update-message"></p>
+		  <div class="updater-btn-wrapper">
+			<button id="close-button" class="btn btn-secondary hidden"> 닫기 </button>
+			<button id="restart-button" class="btn btn-primary hidden"> 재시작 </button>
+		  </div>
+		</div>
+	  </div>
+	  <div class="loading-wrapper hidden">
+		<div class="loading-container">
+		  <div class="loading"></div>
+		  <div id="loading-text">loading</div>
+		</div>
+	  </div>
+	<div id='notes-status'></div>
+	<div style="margin-top:10px;">Step 1 > 작업환경 백업 이름 입력</div>
+	<div style="padding-left:20px;"><input id='NewName' placeholder='현재 작업환경을 이 이름으로 저장함' /></div>
+	<div style="margin-top:20px;">Step 2 > 작업환경으로 사용할 ndk파일을 클릭</div>
+	<div id="">
+		<div style='float:left;width:350px;'><ul id="file-list"></ul></div>
+		<div style='float:left;width:350px;'><ul id="file-list-backup"></ul></div>
+	</div>    
+	
+    <script src="./renderer.js"></script>
+  </body>
+</html>
